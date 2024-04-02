@@ -37,4 +37,3 @@ SELECT FORMAT(SUM(saleprice), '#,#') AS '대한민국 고객 총판매액'
  WHERE custid IN (SELECT custid
                     FROM Customer
                    WHERE [address] LIKE '%대한민국%');
-                   
