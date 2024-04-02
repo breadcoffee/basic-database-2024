@@ -33,7 +33,8 @@ SELECT TOP 1 o.orderid -- 1
  ORDER BY 4 DESC;
 
 -- 6. 도서 판매액 평균보다 자신의 구매액 평균이 더 높은 고객의 이름
-SELECT base.*
+SELECT (SELECT [name] FROM Customer WHERE custid = base.custid) AS '고객명'
+     , base.Average
   FROM (SELECT o.custid
              , AVG(o.saleprice) AS Average
           FROM Orders AS o
