@@ -207,11 +207,63 @@ IoT 개발자과정 SQLServer 학습 리포지토리
 ## 5일차
 - SQL 고급
     - 서브쿼리 리뷰
-    - 뷰
+        - EXISTS/NOT EXISTS : 부속질의문의 어떤 행이 조건에 만족하면 참임
+
+    - 뷰 : 복잡한 쿼리로 생성되는 결과를 자주 사용하기 위해서 만드는 개체
+         , 편리하고, 보안에 강하며, 논리적 독립성을 보임
+         , 원본 데이터가 변경되면 같이 변경되고, 인덱스 생성은 어렵다
+         , CRUD 연산에 제약이 있음
+
+        ```sql
+        -- 생성
+        CREATE VIEW 뷰이름 [(열이름 [, ...])]
+        AS <SELECT 쿼리문>
+
+        -- 수정
+        ALTER VIEW 뷰이름 [(열이름 [, ...])]
+        AS <SELECT 쿼리문>
+
+        -- 삭제
+        DROP VIEW 뷰이름;
+
+        -- 조회
+        SELECT *
+          FROM 뷰이름;
+        ```
+
     - 인덱스
 
+        ```sql
+        CREATE [UNIQUE] [CLUSTERED|NONCLUSTERED] INDEX 인덱스이름
+        ON 테이블명 (속성이름 [ASC|DESC] [,...n]);
+
+        -- 수정
+        ALTER INDEX {인덱스이름|ALL}
+        ON 테이블명 { REBUILD | DISABLE | REORGANIZE };
+
+        -- 삭제
+        DROP INDEX 인덱스이름 ON 테이블명;
+        ``` 
+        - SSMS에서 실행계획을 가지고 쿼리 실행 성능을 체크할 수 있음.   
+
 - 파이썬 SQL Server 연동 프로그래밍
-    - PyQT GUI 생성
-    - SQL Server 데이터 핸들링
+    - Madanf DB 관리 프로그램
+        - PyQT GUI 생성
+        - SQL Server 데이터 핸들링
+            - pymysql 라이브러리 설치
+
+            ```shell
+            > pip install pymssql
+            ```
+        - DB연결 설정 - Oracle, MySQL 등은 설정이 없음. 구성관리자에서 TCP/IP로 접근을 허용하지 않으면 접속 안됨
+            1. 시작메뉴 > 모든 앱 > Microsoft SQL Server 20xx > **SQL Server 20xx 구성관리자** 실행
+            2. SQL Server 네트워크 구성 > **MSSQL SERVER에 대한 프로토콜** 클릭
+            3. TCP/IP 프로토콜 최초 상태가 사용안함 > **TCP/IP**를 더블클릭
+            4. **프로토콜 사용 > 예**, 로 변경
+            5. IP주소 탭 > IP2(자신 IP부분) > **사용 > 예**, 로 변경
+            6. IP주소 탭 > IP4(127.0.0.1 부분) > **사용 > 예**, 로 변경
+            7. 적용 후 SQL Server 서비스 > SQL Server (MSSQLSERVER) 더블클릭 후, **다시 시작** 버튼 클릭, 재시작 필요
+
+            ![DB연결](https://github.com/breadcoffee/basic-database-2024/blob/main/images/db005.png)
 
 - 데이터베이스 모델링
