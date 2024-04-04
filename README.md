@@ -266,4 +266,22 @@ IoT 개발자과정 SQLServer 학습 리포지토리
 
             ![DB연결](https://github.com/breadcoffee/basic-database-2024/blob/main/images/db005.png)
 
+## 6일차
+- 파이썬 SQL Server 연동 프로그래밍
+    - Madanf DB 관리 프로그램
+        - PyQt5 + pymssql
+    
+    - 문제점 : 한글깨짐 문제
+        1. DB 테이블의 varchar(ASCII) -> nvarchar(UTF-8) 변경
+        2. Python에서 pymssql로 접속할 때, charset을 'UTF8'로 변경
+        3. INSERT 쿼리에 한글 입력되는 컬럼은 N''을 붙여줌(유니코드로 입력하라는 뜻)
+
+    - 실행화면
+
+    ![실행화면](https://github.com/breadcoffee/basic-database-2024/blob/main/images/db006.mp4)
+
+## 7일차
+- SQL 고급
+    - 트랜잭션
+
 - 데이터베이스 모델링
