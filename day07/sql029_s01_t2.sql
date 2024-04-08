@@ -1,5 +1,4 @@
-
-
+-- 트랜잭션 2
 BEGIN TRANSACTION;
 USE madang;
 
